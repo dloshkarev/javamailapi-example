@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Test" basedir=".">
+	<property file="build.properties" />
+
+    <path id="mail.lib">
+		<fileset dir="${project.dir}/lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+    <target name="mkdirs">
+    	<echo>Create directory</echo>
+    	<mkdir dir="${build.dir}/classes" />
+    	<mkdir dir="${build.dir}/dist" />
+    </target>
+
+    <target name="clean">
+    	<echo>Clean build directory</echo>
+    	<delete dir="${build.dir}/classes"/>
+    	<delete dir="${build.dir}/dist"/>
+    </target>
+
+    <target name="compile" depends="clean, mkdirs">
+    	<echo>Compile classes</echo>
+    	<javac classpathref="mail.lib"  srcdir="${java.dir}" destdir="${build.dir}/classes"/>
+    </target>
+
+    <target name="package-jar" depends="compile">
+    	<echo>Build jar</echo>
+    	<jar destfile="c:\Quizful.jar">
+    	<fileset dir="${build.dir}/classes" />
+        <fileset dir="${project.dir}" includes="**/*.jar"/>
+    	</jar>
+    </target>
+
+</project>
+

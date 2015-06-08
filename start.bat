@@ -1,0 +1,1 @@
+start java -cp lib/*;Quizful.jar ru.Test
